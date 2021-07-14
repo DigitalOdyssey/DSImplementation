@@ -22,7 +22,8 @@ void stack_push(stack_T* stack, int value)
 {
     if(++stack->size > stack->total)
     {
-        realloc(stack->elements, sizeof(int) * (stack->total + MEMORY_ALLOCATION_INTERVAL));
+        stack->total = stack->total + MEMORY_ALLOCATION_INTERVAL;
+        realloc(stack->elements, sizeof(int) * stack->total);
     }
 
     stack->elements[stack->size - 1] = value;
